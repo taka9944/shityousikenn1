@@ -1,0 +1,144 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light}body{margin:0}</style><title>例規クイズ 消防士長</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&family=Shippori+Mincho+B1:wght@600;800&display=swap">
+<style>
+/* Layout: 1 column phone-first study tool; setup -> one question per screen -> result with review */
+:root{
+  --bg:#eef1f3; --surface:#ffffff; --ink:#16212b; --muted:#5b6872; --line:#d3dade;
+  --accent:#1d4f73; --accent-ink:#ffffff; --ok:#1f7a4d; --ok-bg:#e1f3e8; --ng:#b3261e; --ng-bg:#fbe5e3; --chip:#e2e8ec;
+  --f-body:"BIZ UDPGothic","Hiragino Sans","Noto Sans JP",sans-serif;
+  --f-disp:"Shippori Mincho B1","Hiragino Mincho ProN","Noto Serif JP",serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0f161c; --surface:#18222b; --ink:#e6ecf0; --muted:#98a6b0; --line:#2b3944;
+  --accent:#7fb6dd; --accent-ink:#0b1822; --ok:#6fd09b; --ok-bg:#16352a; --ng:#f2928b; --ng-bg:#3b1f1d; --chip:#22303a; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f161c; --surface:#18222b; --ink:#e6ecf0; --muted:#98a6b0; --line:#2b3944;
+  --accent:#7fb6dd; --accent-ink:#0b1822; --ok:#6fd09b; --ok-bg:#16352a; --ng:#f2928b; --ng-bg:#3b1f1d; --chip:#22303a; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.7;padding-inline:max(16px,env(safe-area-inset-left,0px)) max(16px,env(safe-area-inset-right,0px));padding-block:14px 40px}
+.wrap{max-width:640px;margin:0 auto;display:flex;flex-direction:column;gap:14px}
+h1{font-family:var(--f-disp);font-weight:800;font-size:1.55rem;line-height:1.3;margin:6px 0 0;text-wrap:balance}
+h2{font-family:var(--f-disp);font-weight:800;font-size:1.15rem;margin:0 0 8px}
+.lead{color:var(--muted);margin:0;font-size:.92rem}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px}
+.group{display:flex;flex-direction:column;gap:8px;margin-bottom:14px}
+.group:last-child{margin-bottom:0}
+.lab{font-size:.8rem;letter-spacing:.06em;color:var(--muted);font-weight:700}
+.seg{display:flex;flex-wrap:wrap;gap:8px}
+.seg button{flex:1 1 auto;min-height:44px;padding:8px 14px;border-radius:8px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:inherit;font-size:.95rem;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);font-weight:700}
+button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.primary{width:100%;min-height:54px;border-radius:10px;border:0;background:var(--accent);color:var(--accent-ink);font:inherit;font-weight:700;font-size:1.05rem;cursor:pointer}
+.primary:disabled{opacity:.45;cursor:not-allowed}
+.ghost{min-height:46px;padding:8px 14px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:inherit;cursor:pointer}
+.row{display:flex;gap:10px;flex-wrap:wrap}.row>*{flex:1 1 140px}
+.meta{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:.85rem;color:var(--muted)}
+.bar{height:6px;border-radius:3px;background:var(--chip);overflow:hidden}.bar>i{display:block;height:100%;background:var(--accent);width:0;transition:width .25s}
+.tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px}.tag{font-size:.75rem;background:var(--chip);border-radius:5px;padding:1px 8px;color:var(--muted)}
+.stem{font-size:1.06rem;margin:0;text-wrap:pretty}
+.opts{display:flex;flex-direction:column;gap:10px}
+.opt{display:flex;gap:10px;align-items:flex-start;text-align:left;min-height:52px;padding:11px 12px;border-radius:10px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);font:inherit;font-size:.98rem;line-height:1.6;cursor:pointer;width:100%}
+.opt .n{flex:none;width:1.6em;font-weight:700;color:var(--accent)}
+.opt.tfb{justify-content:center;align-items:center;font-size:1.6rem;font-weight:700;min-height:64px}
+.opt.ok{border-color:var(--ok);background:var(--ok-bg)}.opt.ng{border-color:var(--ng);background:var(--ng-bg)}
+.opt[disabled]{cursor:default}
+.verdict{font-weight:700;font-size:1.1rem}.verdict.ok{color:var(--ok)}.verdict.ng{color:var(--ng)}
+.exp p{margin:6px 0}.src{font-size:.85rem;color:var(--muted);border-top:1px dashed var(--line);padding-top:8px;margin-top:8px}
+.score{font-family:var(--f-disp);font-weight:800;font-size:2.6rem;line-height:1.1;font-variant-numeric:tabular-nums}
+.rev{display:flex;flex-direction:column;gap:10px}.rev details{border:1px solid var(--line);border-radius:8px;background:var(--surface);padding:8px 12px}.rev summary{cursor:pointer;font-size:.95rem}
+.stat{font-size:.85rem;color:var(--muted)}
+.note{font-size:.78rem;color:var(--muted)}
+</style>
+<div class="wrap" id="app"></div>
+<script>
+var DATA=[{"type": "五肢択一", "subject": "警防", "topic": "警防活動規程 部隊編成", "question": "警防活動規程に定める消防部隊の編成について、誤っているものはどれか。", "options": ["分隊は、署及び分署に配備された車両を単位として置く。", "分隊長は、消防士長以上の階級にある者をもって充てる。", "小隊は2隊以上の分隊をもって編成し、小隊長は消防司令補以上の階級にある者をもって充てる。", "小隊を構成する分隊に消防司令補以上の階級にある者が不在の場合は、消防士長の階級にある者を小隊長に充てる。", "中隊は2以上の小隊をもって編成し、中隊長は消防司令長以上の階級にある者をもって充てる。"], "answer": 5, "explanation": "中隊長に充てられるのは「消防司令以上」の階級にある者である。消防司令長以上ではない。他の選択肢は規程のとおり。", "source": "岐阜市消防本部警防活動規程 第5条(例規集p.550)", "id": "q00"}, {"type": "五肢択一", "subject": "警防", "topic": "倉庫火災消火活動要領", "question": "倉庫火災の一般的特性として、倉庫火災消火活動要領に掲げられている内容のうち、誤っているものはどれか。", "options": ["荷物搬入搬出用開口部の正面に停車すると、火煙の吹き返しや爆燃による受傷、車両等の損傷の危険がある。", "大規模な倉庫では、部隊が開口部付近に集中しやすく、背面・両側面の状況把握が遅れやすい。", "荷物搬入搬出用開口部が閉鎖されている場合は窓等の開口部が少なく、屋外からでも火点や延焼状況を容易に把握できる。", "密閉性が高いため、開口部を開放した際に急激に火煙が噴出する危険がある。", "山積みされた収容物の荷崩れや、高熱によるラックの座屈の危険がある。"], "answer": 3, "explanation": "開口部が閉鎖されている倉庫は窓等が少ないため、屋外からの火点・延焼状況の把握は「困難」である。", "source": "倉庫火災消火活動要領 2(1)・(2)・(3)(例規集p.574-1)", "id": "q01"}, {"type": "五肢択一", "subject": "警防", "topic": "消防計画 地下建物火災", "question": "岐阜市消防本部消防計画の火災防ぎょ計画における地下建物に対する筒先の配備・進入部署について、誤っているものはどれか。", "options": ["地上階との接続口、他の地階との連絡口、単独地階は、残存部分の吸気出入口に重点配備する。", "排気側の出入口には、警戒の筒先を配備する。", "消火の進入は、吸気側からの一方進入を原則とする。", "検索の進入は、吸気側を優先する。", "煙の噴出が弱いときでも、空気呼吸器を着装して進入する。"], "answer": 4, "explanation": "検索の進入は「排気側」を優先する(消火の進入は吸気側)。", "source": "岐阜市消防本部消防計画 第9章第6節 地下建物(例規集p.442)", "id": "q02"}, {"type": "五肢択一", "subject": "警防", "topic": "車両誘導マニュアル", "question": "車両誘導マニュアルに定める後退時の誘導位置について、誤っているものはどれか。", "options": ["後退時の誘導は、車両の真後ろは避け、斜め後方で行う。", "誘導員が1人の場合は、運転者が誘導員をサイドミラーで確認できる車両斜め後方の位置とし、運転者から概ね2mとする。", "誘導員が2人の場合は、車両左右斜め後方を誘導位置とし、左誘導員を主となる誘導員とする。", "誘導員が3人の場合は、主となる誘導員を決め、後部に1人・前部に2人の3箇所誘導を行う。", "誘導員が4人以上の場合は、後部2人・前部1人に加え、障害物等の危険箇所に誘導員を配置する。"], "answer": 4, "explanation": "3人の場合は後部に2人・前部に1人の3箇所誘導である。", "source": "車両誘導マニュアル 第3 誘導位置(1)(例規集p.727〜728)", "id": "q03"}, {"type": "五肢択一", "subject": "予防", "topic": "火災調査規程 焼損程度", "question": "岐阜市火災調査規程に定める焼損程度について、誤っているものはどれか。", "options": ["全焼とは、建物の焼き損害額が火災前の建物の評価額の70パーセント以上のもの、又はこれ未満であっても残存部分に補修を加えて再使用できないものをいう。", "半焼とは、建物の焼き損害額が火災前の建物の評価額の20パーセント以上のもので、全焼に該当しないものをいう。", "部分焼とは、建物の焼き損害額が火災前の建物の評価額の20パーセント未満のもので、ぼやに該当しないものをいう。", "ぼやとは、建物の焼き損害額が火災前の評価額の10パーセント未満で、焼損床面積が1平方メートル未満のもの等をいい、収容物のみ焼損したものを含む。", "焼損程度は、1世帯ごとに判定する。"], "answer": 5, "explanation": "焼損程度は「建物の棟ごと」に判定する。1世帯ごとに決定するのはり災程度である。", "source": "岐阜市火災調査規程 焼損程度・り災程度(例規集p.1227)", "id": "q04"}, {"type": "五肢択一", "subject": "予防", "topic": "火災予防査察規程 査察の種類と計画", "question": "岐阜市火災予防査察規程に定める査察の種類及び査察計画について、誤っているものはどれか。", "options": ["定期査察とは、年間査察計画に基づき定期的に行う査察をいう。", "臨時査察とは、各種の申請・届出の受付、工事の工程等又は陳情等により、その都度行う査察をいう。", "特別査察とは、消防長又は消防署長が必要があると認める査察対象物を指定して行う査察をいう。", "消防長は、毎年年度末に翌年度の査察方針を定める。", "署長等は、年間査察計画を作成し、毎年3月31日までに消防長に報告しなければならない。"], "answer": 5, "explanation": "年間査察計画の報告期限は毎年4月5日までである。なお、特別査察はその都度実施計画を立てて消防長に報告する。", "source": "岐阜市火災予防査察規程 査察の種類・査察計画(例規集p.953〜954)", "id": "q05"}, {"type": "五肢択一", "subject": "予防", "topic": "火災予防条例 火災警報発令中", "question": "岐阜市火災予防条例に定める、火災に関する警報が発せられた場合における火の使用の制限について、誤っているものはどれか。", "options": ["山林、原野等において火入れ又は喫煙をしないこと。", "煙火を消費しないこと。", "屋外において火遊び又はたき火をしないこと。", "屋内において裸火を使用するときは、窓、出入口等を開放して行うこと。", "残火(たばこの吸殻を含む。)、取灰又は火粉を始末すること。"], "answer": 4, "explanation": "屋内で裸火を使用するときは、窓、出入口等を「閉じて」行う。", "source": "岐阜市火災予防条例 火災に関する警報の発令中における火の使用の制限(例規集p.835)", "id": "q06"}, {"type": "五肢択一", "subject": "予防", "topic": "火災予防条例 住宅用防災警報器", "question": "岐阜市火災予防条例に定める住宅用防災警報器の設置場所について、誤っているものはどれか。", "options": ["就寝の用に供する居室には設置する。", "就寝の用に供する居室が存する階(避難階を除く。)から直下階に通ずる階段(屋外に設けられたものを除く。)の上端には設置する。", "就寝の用に供する居室が避難階のみに存する場合で、居室が存する最上階(避難階から上方に数えた階数が2以上である階に限る。)から直下階に通ずる階段の上端にも設置する。", "他の規定により設置される階以外の階で、床面積が7平方メートル以上の居室が5以上存する階では、廊下に設置する。", "他の規定により設置される階以外の階で、床面積が10平方メートル以上の居室が3以上存する階では、廊下に設置する。"], "answer": 5, "explanation": "条例の基準は「床面積7平方メートル以上の居室が5以上存する階」である。10平方メートル・3以上という基準はない。", "source": "岐阜市火災予防条例 住宅用防災警報器の設置場所(例規集p.836)", "id": "q07"}, {"type": "○×", "subject": "警防", "topic": "警防活動規程 署本部の班", "question": "署本部の第1消防班の任務には、給食物資の運搬協力に関することが含まれる。", "answer": "○", "explanation": "第1消防班(1部)・第2消防班(2部)の任務に「給食物資の運搬協力に関すること」がある。", "source": "警防活動規程 別表第2(例規集p.563)", "id": "q08"}, {"type": "○×", "subject": "警防", "topic": "警防活動規程 署本部の班", "question": "署本部の予防班(予防係)の任務には、消防団の運用に関することが含まれる。", "answer": "×", "explanation": "消防団の運用は第1消防班・第2消防班の任務である。予防班の任務は署本部の運用、警防本部との連絡調整、災害の情報収集、出場消防部隊の掌握、広報、対象物の資料の確保等。", "source": "警防活動規程 別表第2(例規集p.563)", "id": "q09"}, {"type": "○×", "subject": "警防", "topic": "車両誘導マニュアル", "question": "後退時の車両誘導は、運転者が誘導員を確認しやすいよう、車両の真後ろで行うことを原則とする。", "answer": "×", "explanation": "真後ろは避け、斜め後方で行う。", "source": "車両誘導マニュアル 第3(1)(例規集p.727)", "id": "q10"}, {"type": "○×", "subject": "総務", "topic": "惨事ストレス対策要綱", "question": "デフュージング及びデブリーフィングの実施者及び参加者は、参加又は発言を強制してはならない。", "answer": "○", "explanation": "遵守事項は「知り得た秘密を漏らさない」「参加又は発言を強制しない」「記録をとらない」「発言内容等を批判しない」の4つ。", "source": "岐阜市消防本部惨事ストレス対策要綱 秘密の保持(例規集p.217)", "id": "q11"}, {"type": "○×", "subject": "予防", "topic": "違反処理規程 警告", "question": "緊急に警告をする必要があり警告書を発するいとまがないときは、名あて人に口頭で必要な事項を警告することができ、この場合は事後速やかに警告書を名あて人に交付する。", "answer": "○", "explanation": "口頭警告後も事後速やかに警告書を交付する。", "source": "岐阜市火災予防違反処理規程 警告(例規集p.1003)", "id": "q12"}, {"type": "○×", "subject": "予防", "topic": "違反処理規程 違反処理の区分", "question": "違反処理の区分は、警告、命令、認定の取消し、許可の取消し、告発、過料事件の通知、代執行の7つである。", "answer": "×", "explanation": "これらに「略式の代執行」を加えた8つである。", "source": "岐阜市火災予防違反処理規程 違反処理の区分(例規集p.999)", "id": "q13"}, {"type": "○×", "subject": "予防", "topic": "火災調査規程 原因判定報告", "question": "死者が発生した建物火災は、焼損床面積にかかわらず、火災原因判定報告書により報告する判定区分1号の火災に該当する(3名以上の死者が発生した火災を除く)。", "answer": "○", "explanation": "「死者が発生した建物火災(3名以上の死者が発生した火災を除く)」は1号に該当し、90日以内に報告する。", "source": "岐阜市火災調査規程 原因判定に関する報告(例規集p.1234)", "id": "q14"}, {"type": "○×", "subject": "予防", "topic": "火災調査規程 原因判定報告", "question": "航空機火災及び船舶火災は、判定区分2号の火災に該当し、原因判定理由を報告書に記載して報告する。", "answer": "×", "explanation": "航空機火災・船舶火災は判定区分1号(火災原因判定報告書により90日以内に報告)。2号は1号以外の火災。", "source": "岐阜市火災調査規程 原因判定に関する報告(例規集p.1234)", "id": "q15"}, {"type": "○×", "subject": "予防", "topic": "火災予防査察規程 特別査察", "question": "特別査察については、その都度実施計画を立て、消防長に報告しなければならない。", "answer": "○", "explanation": "定期査察は年間査察計画に基づくが、特別査察はその都度実施計画を立てて報告する。", "source": "岐阜市火災予防査察規程 査察計画(例規集p.954)", "id": "q16"}, {"type": "○×", "subject": "予防", "topic": "火災予防条例 火災警報発令中", "question": "火災に関する警報が発せられた場合、屋外においては、引火性又は爆発性の物品その他の可燃物の付近で喫煙をしてはならない。", "answer": "○", "explanation": "警報発令中の制限事項の一つ(屋外での喫煙は可燃物付近では禁止)。", "source": "岐阜市火災予防条例 火災に関する警報の発令中における火の使用の制限(例規集p.835)", "id": "q17"}, {"type": "五肢択一", "subject": "警防", "topic": "倉庫火災消火活動要領", "question": "倉庫火災の特性のうち「内部区画が大きい、又は複数の区画がある」ことに関する記述として、誤っているものはどれか。", "options": ["区画の全域に濃煙が充満し、延焼範囲(実態)の確認が困難となる。", "延焼拡大する危険が高い。", "区画が複数ある場合、燃焼区画以外の区画では焼け等がなく、安全措置を怠りやすい。", "防火区画のシャッターの不作動や閉鎖障害等により、延焼拡大危険がある。", "内部区画が大きいため、延焼範囲の確認が容易で、内部へ進入しやすい。"], "answer": 5, "explanation": "内部区画が大きいと、濃煙が全域に充満して延焼範囲の確認が「困難」になる。", "source": "倉庫火災消火活動要領 2(4)(例規集p.574-1〜574-2)", "id": "q18"}, {"type": "五肢択一", "subject": "警防", "topic": "消防計画 地下建物火災", "question": "岐阜市消防本部消防計画に定める地下建物火災の進入部署について、誤っているものはどれか。", "options": ["上階又は隣接地下に接続するものは、先着隊は出火地下に進入する。", "上階又は隣接地下に接続するものは、後着隊は上階、隣接地階との連絡口及び延焼経路の危険な箇所へ進入する。", "煙の噴出が弱いときでも、空気呼吸器を着装して進入する。", "煙の噴出が弱いときでも、ホースや投光器のコードを延長し、又はそれを伝わって進入する。", "上階又は隣接地下に接続するものは、先着隊は上階に進入し、後着隊が出火地下に進入する。"], "answer": 5, "explanation": "先着隊は出火地下、後着隊は上階・隣接地階との連絡口及び延焼経路の危険な箇所へ進入する。", "source": "岐阜市消防本部消防計画 第9章第6節 地下建物(例規集p.442)", "id": "q19"}, {"type": "五肢択一", "subject": "総務", "topic": "惨事ストレス対策要綱", "question": "惨事ストレス対策要綱に定める、デフュージング及びデブリーフィングの実施者及び参加者が守るべき事項として、誤っているものはどれか。", "options": ["知り得た秘密を漏らさないこと。", "参加又は発言を強制しないこと。", "発言内容等を批判しないこと。", "後日の検証のため、発言内容を記録すること。", "記録をとらないこと。"], "answer": 4, "explanation": "守るべき事項は「秘密を漏らさない」「参加又は発言を強制しない」「記録をとらない」「発言内容等を批判しない」の4つ。記録はとらない。", "source": "岐阜市消防本部惨事ストレス対策要綱 秘密の保持(例規集p.217)", "id": "q20"}];
+var LS='reiki-quiz-v1';
+function load(){try{return JSON.parse(localStorage.getItem(LS))||{}}catch(e){return {}}}
+function save(s){try{localStorage.setItem(LS,JSON.stringify(s))}catch(e){}}
+var store=load(); store.wrong=store.wrong||{}; store.hist=store.hist||[];
+var cfg={subject:'すべて',type:'すべて',count:10,shuffle:true,onlyWrong:false};
+var app=document.getElementById('app'),run=null;
+var NUM=['①','②','③','④','⑤'];
+function el(h){var d=document.createElement('div');d.innerHTML=h;return d.firstElementChild}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function shuf(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t}return a}
+function pool(){return DATA.filter(function(q){
+  return (cfg.subject==='すべて'||q.subject===cfg.subject)&&(cfg.type==='すべて'||q.type===cfg.type)&&(!cfg.onlyWrong||store.wrong[q.id])})}
+function seg(key,vals,labels){return '<div class="seg" data-k="'+key+'">'+vals.map(function(v,i){return '<button type="button" aria-pressed="'+(String(cfg[key])===String(v))+'" data-v="'+esc(v)+'">'+esc(labels?labels[i]:v)+'</button>'}).join('')+'</div>'}
+function home(){
+  var subs=['すべて'].concat(Array.from(new Set(DATA.map(function(q){return q.subject}))));
+  var nW=Object.keys(store.wrong).filter(function(id){return DATA.some(function(q){return q.id===id})}).length;
+  var h='<h1>例規クイズ 消防士長</h1><p class="lead">岐阜市消防関係例規集から出題。○×と五肢択一(誤っているものを選ぶ)を、答えるたびに解説と例規集のページで確認できます。</p>';
+  h+='<div class="panel"><div class="group"><div class="lab">科目</div>'+seg('subject',subs)+'</div>';
+  h+='<div class="group"><div class="lab">形式</div>'+seg('type',['すべて','○×','五肢択一'])+'</div>';
+  h+='<div class="group"><div class="lab">問題数</div>'+seg('count',[5,10,20,999],['5問','10問','20問','全問'])+'</div>';
+  h+='<div class="group"><div class="lab">出題</div>'+seg('onlyWrong',[false,true],['すべて','間違えた問題だけ('+nW+')'])+'</div>';
+  h+='<div class="group"><div class="lab">並び順</div>'+seg('shuffle',[true,false],['ランダム','登録順'])+'</div>';
+  h+='<button class="primary" id="go" type="button"></button></div>';
+  var last=store.hist.slice(-3).reverse();
+  if(last.length)h+='<div class="panel stat"><b>直近の成績</b><br>'+last.map(function(x){return esc(x.d)+'  '+x.ok+'/'+x.n+'問正解'}).join('<br>')+'</div>';
+  h+='<p class="note">この端末のブラウザに成績を保存します。サンプル問題'+DATA.length+'問。例規集の文字起こしをもとに作成しています。出題内容は原本で確認してください。</p>';
+  app.innerHTML='';app.appendChild(el('<div class="wrap" style="gap:14px">'+h+'</div>').cloneNode(true));
+  app=document.getElementById('app');
+  var inner=app.firstChild;
+  inner.addEventListener('click',function(e){
+    var b=e.target.closest('.seg button');if(!b)return;
+    var k=b.parentNode.getAttribute('data-k'),v=b.getAttribute('data-v');
+    cfg[k]=(k==='count')?parseInt(v,10):(k==='shuffle'||k==='onlyWrong')?(v==='true'):v;
+    home();
+  });
+  var n=pool().length,go=document.getElementById('go');
+  go.textContent=n?'始める('+Math.min(n,cfg.count)+'問)':'該当する問題がありません';
+  go.disabled=!n;go.onclick=start;
+}
+function start(){
+  var p=pool();p=cfg.shuffle?shuf(p):p;p=p.slice(0,cfg.count);
+  run={qs:p.map(function(q){var c=JSON.parse(JSON.stringify(q));
+    if(c.type==='五肢択一'){var idx=c.options.map(function(_,i){return i});if(cfg.shuffle)idx=shuf(idx);
+      c.opts=idx.map(function(i){return c.options[i]});c.ans=idx.indexOf(c.answer-1)}
+    return c}),i:0,ok:0,wrong:[]};
+  show();
+}
+function show(){
+  var q=run.qs[run.i],n=run.qs.length;
+  var h='<div class="meta"><span>'+(run.i+1)+' / '+n+'</span><button class="ghost" type="button" id="quit" style="min-height:36px;padding:4px 12px">やめる</button></div><div class="bar"><i style="width:'+(run.i/n*100)+'%"></i></div>';
+  h+='<div class="panel"><div class="tags"><span class="tag">'+esc(q.subject)+'</span><span class="tag">'+esc(q.type)+'</span><span class="tag">'+esc(q.topic)+'</span></div><p class="stem">'+esc(q.question)+'</p></div>';
+  h+='<div class="opts" id="opts">';
+  if(q.type==='○×'){h+='<button class="opt tfb" type="button" data-i="0">○</button><button class="opt tfb" type="button" data-i="1">×</button>'}
+  else q.opts.forEach(function(o,i){h+='<button class="opt" type="button" data-i="'+i+'"><span class="n">'+NUM[i]+'</span><span>'+esc(o)+'</span></button>'});
+  h+='</div><div id="fb"></div>';
+  app.innerHTML=h;window.scrollTo(0,0);
+  document.getElementById('quit').onclick=home;
+  document.getElementById('opts').onclick=function(e){var b=e.target.closest('.opt');if(!b||b.disabled)return;answer(parseInt(b.getAttribute('data-i'),10))};
+}
+function answer(i){
+  var q=run.qs[run.i],ok,correctIdx;
+  if(q.type==='○×'){correctIdx=(q.answer==='○')?0:1;ok=(i===correctIdx)}else{correctIdx=q.ans;ok=(i===correctIdx)}
+  var bs=document.querySelectorAll('#opts .opt');
+  for(var k=0;k<bs.length;k++){bs[k].disabled=true;if(k===correctIdx)bs[k].classList.add('ok');else if(k===i)bs[k].classList.add('ng')}
+  if(ok){run.ok++;delete store.wrong[q.id]}else{run.wrong.push(q);store.wrong[q.id]=1}
+  save(store);
+  var h='<div class="panel exp"><div class="verdict '+(ok?'ok':'ng')+'">'+(ok?'正解':'不正解')+(q.type==='五肢択一'?'(正答 '+NUM[correctIdx]+')':'(正答 '+q.answer+')')+'</div><p>'+esc(q.explanation)+'</p><div class="src">出典: '+esc(q.source)+'</div></div>';
+  var last=run.i===run.qs.length-1;
+  h+='<button class="primary" id="next" type="button">'+(last?'結果を見る':'次の問題')+'</button>';
+  var fb=document.getElementById('fb');fb.innerHTML=h;
+  document.getElementById('next').onclick=function(){run.i++;if(run.i>=run.qs.length)finish();else show()};
+  fb.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+function finish(){
+  var n=run.qs.length,d=new Date();
+  store.hist.push({d:(d.getMonth()+1)+'/'+d.getDate(),ok:run.ok,n:n});store.hist=store.hist.slice(-20);save(store);
+  var h='<h1>結果</h1><div class="panel"><div class="score">'+run.ok+' / '+n+'</div><p class="lead">正答率 '+Math.round(run.ok/n*100)+'%</p></div>';
+  if(run.wrong.length){h+='<h2>間違えた問題</h2><div class="rev">'+run.wrong.map(function(q){
+    var a=q.type==='○×'?q.answer:(NUM[q.ans]+' '+q.opts[q.ans]);
+    return '<details><summary>'+esc(q.question)+'</summary><p><b>正答:</b> '+esc(a)+'</p><p>'+esc(q.explanation)+'</p><p class="src">出典: '+esc(q.source)+'</p></details>'}).join('')+'</div>'}
+  else h+='<div class="panel">全問正解です。</div>';
+  h+='<div class="row">'+(run.wrong.length?'<button class="primary" id="retry" type="button">間違えた問題をもう一度</button>':'')+'<button class="ghost" id="top" type="button">最初に戻る</button></div>';
+  app.innerHTML=h;window.scrollTo(0,0);
+  document.getElementById('top').onclick=home;
+  var r=document.getElementById('retry');if(r)r.onclick=function(){var ws=run.wrong.map(function(q){return q.id});cfg.onlyWrong=true;cfg.subject='すべて';cfg.type='すべて';cfg.count=999;start();}
+}
+home();
+</script>
+</html>
